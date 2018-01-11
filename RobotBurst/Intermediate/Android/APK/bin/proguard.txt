@@ -1,0 +1,21 @@
+# view AndroidManifest.xml #generated:10
+-keep class com.epicgames.ue4.GameActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:28
+-keep class com.epicgames.ue4.LocalNotificationReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:4
+-keep class com.epicgames.ue4.SplashActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:25
+-keep class com.google.android.gms.ads.AdActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:27
+-keep class com.xy.robotburst.AlarmReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:13
+-keep class com.xy.robotburst.DownloaderActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:26
+-keep class com.xy.robotburst.OBBDownloaderService { <init>(...); }
+
