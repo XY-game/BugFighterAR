@@ -6,7 +6,7 @@ FSMMachine::FSMMachine()
 {
 }
 
-void FSMMachine::InitMachine(EGameplayState::Type StateKey)
+void FSMMachine::InitMachine(int StateKey)
 {
 	if (States.Contains(StateKey)) {
 		CurState = States[StateKey];
@@ -15,14 +15,14 @@ void FSMMachine::InitMachine(EGameplayState::Type StateKey)
 	}
 }
 
-void FSMMachine::RegisterState(EGameplayState::Type StateKey, FSMState* State)
+void FSMMachine::RegisterState(int StateKey, FSMState* State)
 {
 	if (!States.Contains(StateKey)) {
 		States.Add(StateKey, State);
 	}
 }
 
-void FSMMachine::UnRegisterState(EGameplayState::Type StateKey)
+void FSMMachine::UnRegisterState(int StateKey)
 {
 	if (States.Contains(StateKey)) {
 		States.Remove(StateKey);
@@ -34,7 +34,7 @@ void FSMMachine::TickMachine()
 	CurState->TickState();
 }
 
-void FSMMachine::ChangeState(EGameplayState::Type StateKey)
+void FSMMachine::ChangeState(int StateKey)
 {
 	if (States.Contains(StateKey)) {
 		CurState->ExitState();

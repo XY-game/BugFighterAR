@@ -325,6 +325,9 @@
     <ClInclude Include="..\..\Source\RobotBurst\Data\FCharAttackComboRowBase.h">
       <Filter>Source\RobotBurst\Data</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\RobotBurst\StateMachine\SingleGame\SingleGamePlayingState.h">
+      <Filter>Source\RobotBurst\StateMachine\SingleGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\RobotBurst\Data\FCharAttackAnimTableRow.cpp">
@@ -332,6 +335,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\RobotBurst\Data\FCharAttackComboRowBase.cpp">
       <Filter>Source\RobotBurst\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\RobotBurst\StateMachine\SingleGame\SingleGamePlayingState.cpp">
+      <Filter>Source\RobotBurst\StateMachine\SingleGame</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

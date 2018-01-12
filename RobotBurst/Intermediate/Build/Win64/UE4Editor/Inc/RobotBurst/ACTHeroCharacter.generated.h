@@ -21,6 +21,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		P_NATIVE_BEGIN; \
 		this->Attack(); \
 		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackDamageTime) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackDamageTime(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackEnd) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackEnd(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackSpacing) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackSpacing(); \
+		P_NATIVE_END; \
 	}
 
 
@@ -31,6 +55,30 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 		P_FINISH; \
 		P_NATIVE_BEGIN; \
 		this->Attack(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackDamageTime) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackDamageTime(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackEnd) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackEnd(); \
+		P_NATIVE_END; \
+	} \
+ \
+	DECLARE_FUNCTION(execRefreshAttackSpacing) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		this->RefreshAttackSpacing(); \
 		P_NATIVE_END; \
 	}
 
@@ -81,7 +129,14 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AACTHeroCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AACTHeroCharacter)
 
 
-#define RobotBurst_Source_RobotBurst_Characters_ACTHeroCharacter_h_15_PRIVATE_PROPERTY_OFFSET
+#define RobotBurst_Source_RobotBurst_Characters_ACTHeroCharacter_h_15_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__NextAttackCombNum() { return STRUCT_OFFSET(AACTHeroCharacter, NextAttackCombNum); } \
+	FORCEINLINE static uint32 __PPO__AttackSpacingTimer() { return STRUCT_OFFSET(AACTHeroCharacter, AttackSpacingTimer); } \
+	FORCEINLINE static uint32 __PPO__AttackEndTimer() { return STRUCT_OFFSET(AACTHeroCharacter, AttackEndTimer); } \
+	FORCEINLINE static uint32 __PPO__AttackDamageTimer() { return STRUCT_OFFSET(AACTHeroCharacter, AttackDamageTimer); } \
+	FORCEINLINE static uint32 __PPO__IsAttackSpacing() { return STRUCT_OFFSET(AACTHeroCharacter, IsAttackSpacing); }
+
+
 #define RobotBurst_Source_RobotBurst_Characters_ACTHeroCharacter_h_12_PROLOG
 #define RobotBurst_Source_RobotBurst_Characters_ACTHeroCharacter_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

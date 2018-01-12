@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ROBOTBURST_BaseCharacter_generated_h
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_RPC_WRAPPERS
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_INCLASS_NO_PURE_DECLS \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_RPC_WRAPPERS
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABaseCharacter(); \
 	friend ROBOTBURST_API class UClass* Z_Construct_UClass_ABaseCharacter(); \
@@ -25,7 +25,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_INCLASS \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesABaseCharacter(); \
 	friend ROBOTBURST_API class UClass* Z_Construct_UClass_ABaseCharacter(); \
@@ -35,7 +35,7 @@ public: \
 	enum {IsIntrinsic=COMPILED_IN_INTRINSIC};
 
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_STANDARD_CONSTRUCTORS \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ABaseCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ABaseCharacter) \
@@ -48,7 +48,7 @@ private: \
 public:
 
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_ENHANCED_CONSTRUCTORS \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ABaseCharacter(ABaseCharacter&&); \
@@ -59,26 +59,26 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ABaseCharacter); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ABaseCharacter)
 
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_PRIVATE_PROPERTY_OFFSET
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_9_PROLOG
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_GENERATED_BODY_LEGACY \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_PRIVATE_PROPERTY_OFFSET
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_10_PROLOG
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_PRIVATE_PROPERTY_OFFSET \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_RPC_WRAPPERS \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_INCLASS \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_STANDARD_CONSTRUCTORS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_PRIVATE_PROPERTY_OFFSET \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_RPC_WRAPPERS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_INCLASS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_GENERATED_BODY \
+#define RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_PRIVATE_PROPERTY_OFFSET \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_INCLASS_NO_PURE_DECLS \
-	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_12_ENHANCED_CONSTRUCTORS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_PRIVATE_PROPERTY_OFFSET \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_INCLASS_NO_PURE_DECLS \
+	RobotBurst_Source_RobotBurst_Characters_BaseCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

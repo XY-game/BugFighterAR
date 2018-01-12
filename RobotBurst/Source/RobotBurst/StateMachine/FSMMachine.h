@@ -13,19 +13,19 @@ class ROBOTBURST_API FSMMachine
 {
 public:
 	FSMMachine();
-
-	EGameplayState::Type CurStateKey;
+	int CurStateKey;
+	/*EGameplayState::Type CurStateKey;*/
 	FSMState* CurState;
 
-	TMap<EGameplayState::Type, FSMState*> States;
+	TMap<int, FSMState*> States;
 
-	void InitMachine(EGameplayState::Type StateKey);
+	void InitMachine(int StateKey);
 
-	void RegisterState(EGameplayState::Type StateKey,FSMState* State);
+	void RegisterState(int StateKey,FSMState* State);
 
-	void UnRegisterState(EGameplayState::Type StateKey);
+	void UnRegisterState(int StateKey);
 
 	void TickMachine();
 
-	void ChangeState(EGameplayState::Type StateKey);
+	void ChangeState(int StateKey);
 };

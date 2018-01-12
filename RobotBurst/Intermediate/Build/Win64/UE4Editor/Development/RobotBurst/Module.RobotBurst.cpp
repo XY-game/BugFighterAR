@@ -26,6 +26,7 @@
 #include "H:\Project\RobotBurst\Source\RobotBurst\StateMachine\FSMMachine.cpp"
 #include "H:\Project\RobotBurst\Source\RobotBurst\StateMachine\FSMState.cpp"
 #include "H:\Project\RobotBurst\Source\RobotBurst\StateMachine\SingleGame\SingleGameBaseState.cpp"
+#include "H:\Project\RobotBurst\Source\RobotBurst\StateMachine\SingleGame\SingleGamePlayingState.cpp"
 #include "H:\Project\RobotBurst\Source\RobotBurst\StateMachine\SingleGame\SingleGameWaitingState.cpp"
 #include "H:\Project\RobotBurst\Source\RobotBurst\UI\ACTGameInputWidget.cpp"
 #include "H:\Project\RobotBurst\Source\RobotBurst\UI\BaseUserWidget.cpp"

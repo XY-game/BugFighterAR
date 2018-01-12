@@ -6,6 +6,7 @@
 #include "Characters/HeroCharacter.h"
 #include "Runtime/Engine/Classes/Components/CapsuleComponent.h"
 #include "StateMachine/SingleGame/SingleGameWaitingState.h"
+#include "StateMachine/SingleGame/SingleGamePlayingState.h"
 #include "Data/FHeroTableRow.h"
 #include "Data/FCharAttackAnimTableRow.h"
 #include "Data/FCharAttackComboRowBase.h"
@@ -56,14 +57,18 @@ void ASingleGameLogicActor::InitLogic()
 
 	SingleGameWaitingState* WaitingState = new SingleGameWaitingState();
 	WaitingState->GameLogic = this;
-	StateMachine->RegisterState(EGameplayState::Waiting, WaitingState);
+	StateMachine->RegisterState((int)EGameplayState::Waiting, WaitingState);
 
-	StateMachine->InitMachine(EGameplayState::Waiting);
+	SingleGamePlayingState* PlayingState = new SingleGamePlayingState();
+	PlayingState->GameLogic = this;
+	StateMachine->RegisterState((int)EGameplayState::Playing, PlayingState);
+
+	StateMachine->InitMachine((int)EGameplayState::Waiting);
 
 	IsGameInit = true;
 	SetHeroID("Hero_ACT_1");
 
-	//StartGame();
+	StartGame();
 }
 
 AHeroCharacter * ASingleGameLogicActor::CreatPlayerHero(FString HeroResPath, FVector Location, FRotator Rotator)
@@ -112,23 +117,23 @@ void ASingleGameLogicActor::StartGame()
 	InitGameUI->SetVisibility(ESlateVisibility::Collapsed);
 	InitGameUI->SetIsEnabled(false);
 
-	if (ARData->GetClass()->ImplementsInterface(UARDataInterface::StaticClass()))
-	{
-		TArray<FTransform> ARPlaneCenterTrans = IARDataInterface::Execute_GetMainARWorldCenterTransform(ARData);
-		ARPlaneCenterTrans.Sort([](const FTransform& A, const FTransform& B) {
-			return A.GetScale3D().Size() > B.GetScale3D().Size();
-		});
-		//FTransform Center = ARPlaneCenterTrans[0];
-		
-		InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
-		InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
+	//if (ARData->GetClass()->ImplementsInterface(UARDataInterface::StaticClass()))
+	//{
+	//	TArray<FTransform> ARPlaneCenterTrans = IARDataInterface::Execute_GetMainARWorldCenterTransform(ARData);
+	//	ARPlaneCenterTrans.Sort([](const FTransform& A, const FTransform& B) {
+	//		return A.GetScale3D().Size() > B.GetScale3D().Size();
+	//	});
+	//	InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
+	//	InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
+	//	InitPlayerUI();
+	//	InitPlayerAction();
+	//}
+		InitNavMesh(FVector::ZeroVector);
+		InitHero(FVector::ZeroVector);
 		InitPlayerUI();
 		InitPlayerAction();
-	}
-		//InitNavMesh(- FVector::UpVector * 300);
-		//InitHero(FVector::ZeroVector);
-		//InitPlayerUI();
-		//InitPlayerAction();
+
+		StateMachine->ChangeState((int)EGameplayState::Playing);
 }
 
 void ASingleGameLogicActor::InitHero(FVector Location)
@@ -151,9 +156,13 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		CurHeroType = CurHeroRow->HeroType;
 		FCharAttackAnimTableRow* CurAttackAnim = CharAnimDataTable->FindRow<FCharAttackAnimTableRow>(CurHeroRow->AttackAnimRowName, ContextString);
 		if (CurAttackAnim) {
-			for (TMap<FName, FName>::TIterator It(CurAttackAnim->CharacterAttackAnimMontagePath); It; ++It) {
-				UAnimMontage* MontageTemp = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(It.Value().ToString()));
-				CurPlayerHero->CharacterAttackAnimMontageMap.Add(It.Key(), MontageTemp);
+			for (TMap<FName, FAnimInfo>::TIterator It(CurAttackAnim->AnimInfos); It; ++It) {
+				FAnimInfoAdpter InfoAdpter = FAnimInfoAdpter();
+				InfoAdpter.AnimStartSpacing = It.Value().AnimStartSpacing;
+				InfoAdpter.AnimEndSpacing = It.Value().AnimEndSpacing;
+				InfoAdpter.AnimDamageTime = It.Value().AnimDamageTime;
+				InfoAdpter.CharacterAttackAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(It.Value().CharacterAttackAnimMontagePath.ToString()));
+				CurPlayerHero->CharacterAttackAnimInfo.Add(It.Key(), InfoAdpter);
 			}
 		}
 

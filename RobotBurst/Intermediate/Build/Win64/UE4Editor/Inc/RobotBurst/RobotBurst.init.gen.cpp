@@ -23,8 +23,8 @@ void EmptyLinkFunctionForGeneratedCodeRobotBurst_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/RobotBurst",
 				PKG_CompiledIn | 0x00000000,
-				0x75579A1C,
-				0xE203E134,
+				0xF871DC6C,
+				0x72083DD5,
 				SingletonFuncArray, ARRAY_COUNT(SingletonFuncArray),
 				METADATA_PARAMS(nullptr, 0)
 			};

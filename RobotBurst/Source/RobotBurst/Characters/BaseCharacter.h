@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Data/FCharAttackAnimTableRow.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -32,7 +33,7 @@ public:
 		int Health;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
-		TMap<FName, UAnimMontage*> CharacterAttackAnimMontageMap;
+		TMap<FName, FAnimInfoAdpter> CharacterAttackAnimInfo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
 		TArray<FName> CharacterAttackComboList;

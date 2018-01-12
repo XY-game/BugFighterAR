@@ -723,6 +723,7 @@
     <None Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\RobotBurst_Android_Multi.BpCodeGenManifest.json" />
     <ClCompile Include="..\..\Source\RobotBurst\Data\FCharAttackAnimTableRow.cpp" />
     <ClCompile Include="..\..\Source\RobotBurst\Data\FCharAttackComboRowBase.cpp" />
+    <ClCompile Include="..\..\Source\RobotBurst\StateMachine\SingleGame\SingleGamePlayingState.cpp" />
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\ARCorePlaneActor__pf2792847264.cpp" />
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\ARManager__pf2792847264.cpp" />
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\ARPawn__pf2792847264.cpp" />
@@ -730,6 +731,7 @@
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\NativizedAssets.cpp" />
     <ClInclude Include="..\..\Source\RobotBurst\Data\FCharAttackAnimTableRow.h" />
     <ClInclude Include="..\..\Source\RobotBurst\Data\FCharAttackComboRowBase.h" />
+    <ClInclude Include="..\..\Source\RobotBurst\StateMachine\SingleGame\SingleGamePlayingState.h" />
     <ClInclude Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\NativizedAssets.h" />
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\NativizedAssets_Dependencies.cpp" />
     <ClCompile Include="..\Plugins\NativizedAssets\Android\Game\Source\NativizedAssets\Private\TouchEffectComponent__pf2792847264.cpp" />

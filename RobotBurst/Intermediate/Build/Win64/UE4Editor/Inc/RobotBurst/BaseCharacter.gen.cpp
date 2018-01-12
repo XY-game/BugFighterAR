@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeBaseCharacter() {}
 	ROBOTBURST_API UClass* Z_Construct_UClass_ABaseCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_RobotBurst();
-	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+	ROBOTBURST_API UScriptStruct* Z_Construct_UScriptStruct_FAnimInfoAdpter();
 // End Cross Module References
 	void ABaseCharacter::StaticRegisterNativesABaseCharacter()
 	{
@@ -51,14 +51,14 @@ void EmptyLinkFunctionForGeneratedCodeBaseCharacter() {}
 			static const UE4CodeGen_Private::FArrayPropertyParams NewProp_CharacterAttackComboList = { UE4CodeGen_Private::EPropertyClass::Array, "CharacterAttackComboList", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000015, 1, nullptr, STRUCT_OFFSET(ABaseCharacter, CharacterAttackComboList), METADATA_PARAMS(NewProp_CharacterAttackComboList_MetaData, ARRAY_COUNT(NewProp_CharacterAttackComboList_MetaData)) };
 			static const UE4CodeGen_Private::FNamePropertyParams NewProp_CharacterAttackComboList_Inner = { UE4CodeGen_Private::EPropertyClass::Name, "CharacterAttackComboList", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000000, 1, nullptr, 0, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CharacterAttackAnimMontageMap_MetaData[] = {
+			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CharacterAttackAnimInfo_MetaData[] = {
 				{ "Category", "CharData" },
 				{ "ModuleRelativePath", "Characters/BaseCharacter.h" },
 			};
 #endif
-			static const UE4CodeGen_Private::FMapPropertyParams NewProp_CharacterAttackAnimMontageMap = { UE4CodeGen_Private::EPropertyClass::Map, "CharacterAttackAnimMontageMap", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000005, 1, nullptr, STRUCT_OFFSET(ABaseCharacter, CharacterAttackAnimMontageMap), METADATA_PARAMS(NewProp_CharacterAttackAnimMontageMap_MetaData, ARRAY_COUNT(NewProp_CharacterAttackAnimMontageMap_MetaData)) };
-			static const UE4CodeGen_Private::FNamePropertyParams NewProp_CharacterAttackAnimMontageMap_Key_KeyProp = { UE4CodeGen_Private::EPropertyClass::Name, "CharacterAttackAnimMontageMap_Key", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000001, 1, nullptr, 0, METADATA_PARAMS(nullptr, 0) };
-			static const UE4CodeGen_Private::FObjectPropertyParams NewProp_CharacterAttackAnimMontageMap_ValueProp = { UE4CodeGen_Private::EPropertyClass::Object, "CharacterAttackAnimMontageMap", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000001, 1, nullptr, 1, Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FMapPropertyParams NewProp_CharacterAttackAnimInfo = { UE4CodeGen_Private::EPropertyClass::Map, "CharacterAttackAnimInfo", RF_Public|RF_Transient|RF_MarkAsNative, 0x0010000000000005, 1, nullptr, STRUCT_OFFSET(ABaseCharacter, CharacterAttackAnimInfo), METADATA_PARAMS(NewProp_CharacterAttackAnimInfo_MetaData, ARRAY_COUNT(NewProp_CharacterAttackAnimInfo_MetaData)) };
+			static const UE4CodeGen_Private::FNamePropertyParams NewProp_CharacterAttackAnimInfo_Key_KeyProp = { UE4CodeGen_Private::EPropertyClass::Name, "CharacterAttackAnimInfo_Key", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000001, 1, nullptr, 0, METADATA_PARAMS(nullptr, 0) };
+			static const UE4CodeGen_Private::FStructPropertyParams NewProp_CharacterAttackAnimInfo_ValueProp = { UE4CodeGen_Private::EPropertyClass::Struct, "CharacterAttackAnimInfo", RF_Public|RF_Transient|RF_MarkAsNative, 0x0000000000000001, 1, nullptr, 1, Z_Construct_UScriptStruct_FAnimInfoAdpter, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 			static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Health_MetaData[] = {
 				{ "Category", "Health" },
@@ -70,9 +70,9 @@ void EmptyLinkFunctionForGeneratedCodeBaseCharacter() {}
 			static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[] = {
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackComboList,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackComboList_Inner,
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimMontageMap,
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimMontageMap_Key_KeyProp,
-				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimMontageMap_ValueProp,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimInfo,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimInfo_Key_KeyProp,
+				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_CharacterAttackAnimInfo_ValueProp,
 				(const UE4CodeGen_Private::FPropertyParamsBase*)&NewProp_Health,
 			};
 			static const FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -93,7 +93,7 @@ void EmptyLinkFunctionForGeneratedCodeBaseCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ABaseCharacter, 303577194);
+	IMPLEMENT_CLASS(ABaseCharacter, 4094192503);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ABaseCharacter(Z_Construct_UClass_ABaseCharacter, &ABaseCharacter::StaticClass, TEXT("/Script/RobotBurst"), TEXT("ABaseCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ABaseCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

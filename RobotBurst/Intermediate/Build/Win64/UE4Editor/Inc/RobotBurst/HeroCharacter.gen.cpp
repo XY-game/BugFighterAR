@@ -59,7 +59,7 @@ void EmptyLinkFunctionForGeneratedCodeHeroCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHeroCharacter, 4141717709);
+	IMPLEMENT_CLASS(AHeroCharacter, 1293623716);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_AHeroCharacter(Z_Construct_UClass_AHeroCharacter, &AHeroCharacter::StaticClass, TEXT("/Script/RobotBurst"), TEXT("AHeroCharacter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AHeroCharacter);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
