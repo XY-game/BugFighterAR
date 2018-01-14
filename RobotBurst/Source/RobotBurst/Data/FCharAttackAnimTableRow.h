@@ -21,7 +21,10 @@ struct ROBOTBURST_API FAnimInfoAdpter {
 	float AnimEndSpacing;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		float AnimDamageTime;
+	float AnimStartDamage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float AnimDamageTime;
 };
 
 USTRUCT(BlueprintType)
@@ -36,6 +39,9 @@ struct ROBOTBURST_API FAnimInfo {
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float AnimEndSpacing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float AnimStartDamage;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float AnimDamageTime;

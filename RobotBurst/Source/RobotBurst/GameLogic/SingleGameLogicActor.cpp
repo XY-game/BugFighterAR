@@ -169,7 +169,9 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		FCharAttackComboRowBase* CurCombAnim = CharComboDataTable->FindRow<FCharAttackComboRowBase>(CurHeroRow->AttackComboRowName, ContextString);
 
 		CurPlayerHero->CharacterAttackComboList = CurCombAnim->CharacterAttackComboList;
-			
+
+		CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString()));
+		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString()));
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
 	}
 	

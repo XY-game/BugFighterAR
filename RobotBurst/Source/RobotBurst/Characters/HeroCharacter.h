@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BaseCharacter.h"
+#include "StateMachine/PlayerAction/PlayerActionFSMMachine.h"
 #include "HeroCharacter.generated.h"
 
 /**
@@ -16,5 +17,6 @@ class ROBOTBURST_API AHeroCharacter : public ABaseCharacter
 public:
 	AHeroCharacter();
 	
-	
+	//ÐÐ¶¯×´Ì¬»ú
+	PlayerActionFSMMachine* ActionFSM;
 };

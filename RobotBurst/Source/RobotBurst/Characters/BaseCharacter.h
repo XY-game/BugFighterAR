@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Data/FCharAttackAnimTableRow.h"
+#include "StateMachine/FSMMachine.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -21,6 +22,12 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
+	float NormalSpeed = 20;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
+	float AttackSpeed = 20;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -37,4 +44,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
 		TArray<FName> CharacterAttackComboList;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
+		UAnimMontage* CharacterRollAnimMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
+		UAnimMontage* CharacterDieAnimMontage;
+
+	//角色行动状态状态机
+	FSMMachine* ActionStateMachine;
 };

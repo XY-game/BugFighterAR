@@ -41,6 +41,22 @@ namespace EHeroType
 	};
 }
 
+UENUM()
+namespace ECharaterActionStateType
+{
+	enum Type
+	{
+		Idle,
+		Run,
+		Attack,
+		Skill,
+		Jump,
+		Die,
+		Roll,
+		Hurt,
+	};
+}
+
 /**
  * 
  */
@@ -48,8 +64,4 @@ UCLASS()
 class ROBOTBURST_API UGameTypes : public UObject
 {
 	GENERATED_BODY()
-	
-	
-	
-	
 };

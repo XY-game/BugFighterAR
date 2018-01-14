@@ -3,13 +3,25 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "StateMachine/FSMState.h"
 
 /**
  * 
  */
-class ROBOTBURST_API PlayerActionBaseState
+class ROBOTBURST_API PlayerActionBaseState : public FSMState
 {
 public:
 	PlayerActionBaseState();
-	~PlayerActionBaseState();
+
+	virtual void Move(FVector Movement);
+
+	virtual void Attack();
+
+	virtual void Jump();
+
+	virtual void EndJump();
+
+	virtual void Skill(int id);
+
+	virtual void Roll();
 };

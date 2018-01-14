@@ -29,5 +29,11 @@ struct ROBOTBURST_API FHeroTableRow : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Hero)
 		FName AttackComboRowName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
+		FName CharacterRollAnimMontagePath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
+		FName CharacterDieAnimMontagePath;
 };
 

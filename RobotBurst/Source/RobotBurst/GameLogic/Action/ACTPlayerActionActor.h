@@ -32,4 +32,14 @@ public:
 
 	UFUNCTION(Category = PlayerAction, BlueprintCallable)
 	void AttackButtonClick();
+
+	UFUNCTION(Category = PlayerAction, BlueprintCallable)
+	void JumpButtonClick();
+
+	UFUNCTION(Category = PlayerAction, BlueprintCallable)
+	void JumpButtonRelease();
+
+	UFUNCTION(Category = PlayerAction, BlueprintCallable)
+	void RollButtonClick();
+
 };

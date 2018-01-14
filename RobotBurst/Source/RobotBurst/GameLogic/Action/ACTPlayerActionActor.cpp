@@ -15,12 +15,34 @@ void AACTPlayerActionActor::JoystickMove(FVector2D Movement) {
 	}
 	FVector Dir = GameLogic->PlayerPawn->Camera->GetForwardVector() * Movement.Y
 		+ GameLogic->PlayerPawn->Camera->GetRightVector() * Movement.X;
-	//FVector Dir(Movement.X, Movement.Y, 0);
-	GameLogic->CurPlayerHero->AddMovementInput(Dir,20);
+	//GameLogic->CurPlayerHero->AddMovementInput(Dir,20);
+
+	AACTHeroCharacter* ACTHero;
+	ACTHero = Cast<AACTHeroCharacter>(GameLogic->CurPlayerHero);
+	ACTHero->Move(Dir);
 }
 
 void AACTPlayerActionActor::AttackButtonClick() {
 	AACTHeroCharacter* ACTHero;
 	ACTHero = Cast<AACTHeroCharacter>(GameLogic->CurPlayerHero);
 	ACTHero->Attack();
+}
+
+void AACTPlayerActionActor::JumpButtonClick() {
+	AACTHeroCharacter* ACTHero;
+	ACTHero = Cast<AACTHeroCharacter>(GameLogic->CurPlayerHero);
+	ACTHero->Jump();
+}
+
+void AACTPlayerActionActor::JumpButtonRelease() {
+	AACTHeroCharacter* ACTHero;
+	ACTHero = Cast<AACTHeroCharacter>(GameLogic->CurPlayerHero);
+	ACTHero->EndJump();
+}
+
+void AACTPlayerActionActor::RollButtonClick()
+{
+	AACTHeroCharacter* ACTHero;
+	ACTHero = Cast<AACTHeroCharacter>(GameLogic->CurPlayerHero);
+	ACTHero->Roll();
 }

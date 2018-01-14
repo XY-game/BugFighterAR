@@ -12,6 +12,7 @@
 class ROBOTBURST_API SingleGameBaseState : public FSMState
 {
 public:
+
 	SingleGameBaseState();
 
 	class ASingleGameLogicActor* GameLogic;

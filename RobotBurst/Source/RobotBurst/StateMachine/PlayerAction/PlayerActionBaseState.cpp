@@ -6,6 +6,27 @@ PlayerActionBaseState::PlayerActionBaseState()
 {
 }
 
-PlayerActionBaseState::~PlayerActionBaseState()
+
+void PlayerActionBaseState::Move(FVector Movement)
+{
+}
+
+void PlayerActionBaseState::Attack()
+{
+}
+
+void PlayerActionBaseState::Jump()
+{
+}
+
+void PlayerActionBaseState::EndJump()
+{
+}
+
+void PlayerActionBaseState::Roll()
+{
+}
+
+void PlayerActionBaseState::Skill(int id)
 {
 }

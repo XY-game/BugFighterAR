@@ -22,10 +22,16 @@ private:
 	FTimerHandle AttackSpacingTimer;
 
 	UPROPERTY()
-	FTimerHandle AttackEndTimer;
+	FTimerHandle AttackComboEndTimer;
 
 	UPROPERTY()
 	FTimerHandle AttackDamageTimer;
+
+	UPROPERTY()
+	FTimerHandle AttackEndTimer;
+
+	UPROPERTY()
+	FTimerHandle RollEndTimer;
 
 	UPROPERTY()
 	bool IsAttackSpacing = false;
@@ -34,13 +40,43 @@ private:
 	void RefreshAttackSpacing();
 
 	UFUNCTION()
-	void RefreshAttackEnd();
+	void RefreshComboAttack();
+
+	UFUNCTION()
+	void AttackEnd();
 
 	UFUNCTION()
 	void RefreshAttackDamageTime();
 
+	
+
 public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	AACTHeroCharacter();
+
+	UFUNCTION()
+	void NormalAttack();
+
+	UFUNCTION()
+	void Move(FVector Movement);
+
 	UFUNCTION()
 	void Attack();
 
+	UFUNCTION()
+	void Jump();
+
+	UFUNCTION()
+	void EndJump();
+
+	UFUNCTION()
+	void Roll();
+
+	UFUNCTION()
+	void StartRoll();
+
+	UFUNCTION()
+	void EndRoll();
 };
