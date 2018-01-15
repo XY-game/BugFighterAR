@@ -14,9 +14,16 @@ UCLASS()
 class ROBOTBURST_API AHeroCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 public:
 	AHeroCharacter();
 	
+	virtual void Tick(float DeltaTime) override;
+
 	//ÐÐ¶¯×´Ì¬»ú
 	PlayerActionFSMMachine* ActionFSM;
 };

@@ -10,8 +10,15 @@
 #include "StateMachine/PlayerAction/ACT/ACTPlayerActionStateRoll.h"
 #include "GameTypes.h"
 
+void AACTHeroCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
 void AACTHeroCharacter::Tick(float DeltaTime)
 {
+	Super::Tick(DeltaTime);
 	ActionFSM->TickMachine();
 }
 

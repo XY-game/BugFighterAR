@@ -15,5 +15,14 @@ AHeroCharacter::AHeroCharacter() {
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+// Called when the game starts or when spawned
+void AHeroCharacter::BeginPlay()
+{
+	Super::BeginPlay();
 
+}
 
+void AHeroCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}

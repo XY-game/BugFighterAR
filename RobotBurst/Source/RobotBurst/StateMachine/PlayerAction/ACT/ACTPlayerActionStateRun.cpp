@@ -41,7 +41,7 @@ void ACTPlayerActionStateRun::Roll()
 
 void ACTPlayerActionStateRun::TickState()
 {
-	if (!ACTCharater->GetMovementComponent()->Velocity.Size() == 0.f) {
+	if (ACTCharater->GetMovementComponent()->Velocity.Size() == 0.f) {
 		ACTCharater->ActionFSM->ChangeState(ECharaterActionStateType::Idle);
 	}
 }
