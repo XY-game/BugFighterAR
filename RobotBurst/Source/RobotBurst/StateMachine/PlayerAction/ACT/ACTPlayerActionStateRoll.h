@@ -11,4 +11,11 @@ class ROBOTBURST_API ACTPlayerActionStateRoll : public ACTPlayerActionBaseState
 {
 public:
 	ACTPlayerActionStateRoll();
+
+	virtual void EnterState() override;
+
+	virtual void TickState() override;
+
+	virtual void ExitState() override;
+
 };

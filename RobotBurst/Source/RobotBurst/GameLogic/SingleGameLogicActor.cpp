@@ -154,6 +154,11 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 			Location, FRotator::ZeroRotator);
 
 		CurHeroType = CurHeroRow->HeroType;
+
+		CurPlayerHero->NormalHeight = CurHeroRow->NormalHeight;
+		CurPlayerHero->RollHeight = CurHeroRow->RollHeight;
+
+		//animations
 		FCharAttackAnimTableRow* CurAttackAnim = CharAnimDataTable->FindRow<FCharAttackAnimTableRow>(CurHeroRow->AttackAnimRowName, ContextString);
 		if (CurAttackAnim) {
 			for (TMap<FName, FAnimInfo>::TIterator It(CurAttackAnim->AnimInfos); It; ++It) {
@@ -170,7 +175,9 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 
 		CurPlayerHero->CharacterAttackComboList = CurCombAnim->CharacterAttackComboList;
 
-		CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString()));
+		if (!CurHeroRow->CharacterRollAnimMontagePath.ToString().Equals("")) {
+			CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString()));
+		}
 		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString()));
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
 	}

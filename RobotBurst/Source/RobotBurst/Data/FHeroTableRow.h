@@ -20,7 +20,13 @@ struct ROBOTBURST_API FHeroTableRow : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Hero)
 		TEnumAsByte<EHeroType::Type> HeroType;
-	/** Icon to use for Achivement */
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
+		float NormalHeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
+		float RollHeight;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Hero)
 		FName HeroActorPath;
 

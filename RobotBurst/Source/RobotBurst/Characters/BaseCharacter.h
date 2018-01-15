@@ -28,6 +28,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
 	float AttackSpeed = 20;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
+		float NormalHeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
+		float RollHeight;
+
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
