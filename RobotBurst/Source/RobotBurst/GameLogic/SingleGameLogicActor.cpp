@@ -123,8 +123,8 @@ void ASingleGameLogicActor::StartGame()
 		ARPlaneCenterTrans.Sort([](const FTransform& A, const FTransform& B) {
 			return A.GetScale3D().Size() > B.GetScale3D().Size();
 		});
-		InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
-		InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 200);
+		InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
+		InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
 		InitPlayerUI();
 		InitPlayerAction();
 	}
