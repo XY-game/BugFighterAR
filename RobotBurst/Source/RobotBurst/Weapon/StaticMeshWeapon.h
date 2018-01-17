@@ -23,6 +23,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = WeaponMesh)
 	UStaticMeshComponent* Mesh;
 
+	UFUNCTION()
 	void OnWeaponOverlap(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
 		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 		const FHitResult & SweepResult) override;
