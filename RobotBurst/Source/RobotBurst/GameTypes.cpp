@@ -2,6 +2,6 @@
 
 #include "GameTypes.h"
 
-
+bool UGameTypes::IsDebugMode(true);
 
 

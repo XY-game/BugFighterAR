@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PlayerPawn.h"
-
+#include "GameTypes.h"
+#include "Engine.h"
+#include "SingleGameState.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -25,7 +27,10 @@ void APlayerPawn::BeginPlay()
 void APlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (UGameTypes::IsDebugMode) {
+		ASingleGameState* GameState = GetWorld()->GetGameState<ASingleGameState>();
+		SetActorLocation(GameState->GameLogic->CurPlayerHero->GetActorLocation() + FVector(-100, 0, 35));
+	}
 }
 
 // Called to bind functionality to input

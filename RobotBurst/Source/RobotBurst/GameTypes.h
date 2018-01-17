@@ -64,4 +64,7 @@ UCLASS()
 class ROBOTBURST_API UGameTypes : public UObject
 {
 	GENERATED_BODY()
+
+public:
+	static bool IsDebugMode;
 };

@@ -68,7 +68,9 @@ void ASingleGameLogicActor::InitLogic()
 	IsGameInit = true;
 	SetHeroID("Hero_ACT_1");
 
-	//StartGame();
+	if (UGameTypes::IsDebugMode) {
+		StartGame();
+	}
 }
 
 AHeroCharacter * ASingleGameLogicActor::CreatPlayerHero(FString HeroResPath, FVector Location, FRotator Rotator)
@@ -117,22 +119,25 @@ void ASingleGameLogicActor::StartGame()
 	InitGameUI->SetVisibility(ESlateVisibility::Collapsed);
 	InitGameUI->SetIsEnabled(false);
 
-	if (ARData->GetClass()->ImplementsInterface(UARDataInterface::StaticClass()))
-	{
-		TArray<FTransform> ARPlaneCenterTrans = IARDataInterface::Execute_GetMainARWorldCenterTransform(ARData);
-		ARPlaneCenterTrans.Sort([](const FTransform& A, const FTransform& B) {
-			return A.GetScale3D().Size() > B.GetScale3D().Size();
-		});
-		InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
-		InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
+	if (UGameTypes::IsDebugMode) {
+		InitNavMesh(FVector::ZeroVector);
+		InitHero(FVector::ZeroVector);
 		InitPlayerUI();
 		InitPlayerAction();
 	}
-	/*	InitNavMesh(FVector::ZeroVector);
-		InitHero(FVector::ZeroVector);
-		InitPlayerUI();
-		InitPlayerAction();*/
-
+	else {
+		if (ARData->GetClass()->ImplementsInterface(UARDataInterface::StaticClass()))
+		{
+			TArray<FTransform> ARPlaneCenterTrans = IARDataInterface::Execute_GetMainARWorldCenterTransform(ARData);
+			ARPlaneCenterTrans.Sort([](const FTransform& A, const FTransform& B) {
+				return A.GetScale3D().Size() > B.GetScale3D().Size();
+			});
+			InitNavMesh(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
+			InitHero(ARPlaneCenterTrans[0].GetLocation() - FVector::UpVector * 100);
+			InitPlayerUI();
+			InitPlayerAction();
+		}
+	}
 		StateMachine->ChangeState((int)EGameplayState::Playing);
 }
 
