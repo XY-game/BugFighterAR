@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Data/FCharAttackAnimTableRow.h"
 #include "StateMachine/FSMMachine.h"
+#include "GameTypes.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -41,10 +42,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
+	TEnumAsByte<ECharaterBeDamageType::Type> BeDamageType;
 	
 	/** Current health of this Pawn */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Health)
-		int Health;
+	int Health;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
 		TMap<FName, FAnimInfoAdpter> CharacterAttackAnimInfo;

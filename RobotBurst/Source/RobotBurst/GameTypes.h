@@ -6,7 +6,9 @@
 #include "UObject/NoExportTypes.h"
 #include "GameTypes.generated.h"
 
+
 UENUM()
+//点击状态
 namespace EGameKey
 {
 	enum Type
@@ -20,6 +22,7 @@ namespace EGameKey
 }
 
 UENUM()
+//游戏流程状态
 namespace EGameplayState
 {
 	enum Type
@@ -31,6 +34,7 @@ namespace EGameplayState
 }
 
 UENUM()
+//英雄的游戏类型
 namespace EHeroType
 {
 	enum Type
@@ -42,6 +46,7 @@ namespace EHeroType
 }
 
 UENUM()
+//英雄操作状态
 namespace ECharaterActionStateType
 {
 	enum Type
@@ -56,6 +61,19 @@ namespace ECharaterActionStateType
 		Hurt,
 	};
 }
+
+UENUM()
+//英雄受伤状态
+namespace ECharaterBeDamageType
+{
+	enum Type
+	{
+		NORMAL,
+		HURT,
+		DIE,
+	};
+}
+
 
 /**
  * 
