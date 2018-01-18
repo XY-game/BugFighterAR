@@ -8,6 +8,7 @@
 #include "StateMachine/SingleGame/SingleGameWaitingState.h"
 #include "StateMachine/SingleGame/SingleGamePlayingState.h"
 #include "Data/FHeroTableRow.h"
+#include "Data/FWeaponTableRow.h"
 #include "Data/FCharAttackAnimTableRow.h"
 #include "Data/FCharAttackComboRowBase.h"
 #include "GameLogic/Action/ACTPlayerActionActor.h"
@@ -20,6 +21,9 @@ ASingleGameLogicActor::ASingleGameLogicActor() {
 	CharAnimDataTable = CharAttackAnimDataTable_BP.Object;
 	ConstructorHelpers::FObjectFinder<UDataTable> CharAttackComboDataTable_BP(TEXT("DataTable'/Game/Project/Blueprints/Data/CharAttackComboDataTable.CharAttackComboDataTable'"));
 	CharComboDataTable = CharAttackComboDataTable_BP.Object;
+	ConstructorHelpers::FObjectFinder<UDataTable> WeaponDataTable_BP(TEXT("DataTable'/Game/Project/Blueprints/Data/WeaponDataTable.WeaponDataTable'"));
+	WeaponDataTable = WeaponDataTable_BP.Object;
+	
 }
 
 void ASingleGameLogicActor::BeginPlay()
@@ -187,6 +191,10 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
 	}
 	
+}
+
+void ASingleGameLogicActor::InitHeroWeapon()
+{
 }
 
 void ASingleGameLogicActor::InitPlayerUI()

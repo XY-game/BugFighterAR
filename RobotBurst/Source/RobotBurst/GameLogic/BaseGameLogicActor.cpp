@@ -58,6 +58,10 @@ void ABaseGameLogicActor::InitHero(FVector Location)
 {
 }
 
+void ABaseGameLogicActor::InitHeroWeapon()
+{
+}
+
 void ABaseGameLogicActor::InitPlayerUI()
 {
 }

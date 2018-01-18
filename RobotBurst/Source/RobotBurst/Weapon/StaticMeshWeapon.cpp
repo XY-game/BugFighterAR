@@ -15,6 +15,6 @@ AStaticMeshWeapon::AStaticMeshWeapon() {
 void AStaticMeshWeapon::OnWeaponOverlap(UPrimitiveComponent * OverLapComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	if (Mesh) {
-		
+		 
 	}
 }

@@ -88,10 +88,13 @@ public:
 	UDataTable* HeroDataTable;
 
 	UPROPERTY()
-		UDataTable* CharAnimDataTable;
+	UDataTable* WeaponDataTable;
 
 	UPROPERTY()
-		UDataTable* CharComboDataTable;
+	UDataTable* CharAnimDataTable;
+
+	UPROPERTY()
+	UDataTable* CharComboDataTable;
 
 	UFUNCTION()
 	virtual AHeroCharacter* CreatPlayerHero(FString HeroResPath, FVector Location, FRotator Rotator);
@@ -110,6 +113,9 @@ public:
 
 	UFUNCTION()
 	virtual void InitHero(FVector Location);
+
+	UFUNCTION()
+	virtual void InitHeroWeapon();
 
 	UFUNCTION()
 	virtual void InitPlayerUI();

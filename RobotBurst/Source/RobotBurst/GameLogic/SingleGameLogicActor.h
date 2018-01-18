@@ -57,6 +57,9 @@ public:
 	void InitHero(FVector Location) override;
 
 	UFUNCTION()
+	virtual void InitHeroWeapon() override;
+
+	UFUNCTION()
 	void InitPlayerUI() override;
 
 	UFUNCTION()
