@@ -29,7 +29,9 @@ void APlayerPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (UGameTypes::IsDebugMode) {
 		ASingleGameState* GameState = GetWorld()->GetGameState<ASingleGameState>();
-		SetActorLocation(GameState->GameLogic->CurPlayerHero->GetActorLocation() + FVector(-150, 0, 35));
+		if (GameState->GameLogic->CurPlayerHero) {
+			SetActorLocation(GameState->GameLogic->CurPlayerHero->GetActorLocation() + FVector(-150, 0, 35));
+		}
 	}
 }
 
