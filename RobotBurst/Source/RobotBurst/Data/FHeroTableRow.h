@@ -46,7 +46,7 @@ struct ROBOTBURST_API FHeroTableRow : public FTableRowBase
 		bool IsHeroHasWeapon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
-		FName WeaponId;
+		TArray<FName> WeaponIds;
 
 
 

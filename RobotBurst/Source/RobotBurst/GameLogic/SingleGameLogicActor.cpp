@@ -190,13 +190,15 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		}
 
 		if (CurHeroRow->IsHeroHasWeapon) {
-			FWeaponTableRow* CurWeapon = WeaponDataTable->FindRow<FWeaponTableRow>(CurHeroRow->WeaponId, ContextString);
-			FString Path = CurWeapon->WeaponPath.ToString();
-			Path.Replace(TEXT("Blueprint"), TEXT("Class"));
-			static int idx = 0;
-			Path.FindLastChar('\'', idx);
-			Path.InsertAt(idx, TEXT("_C"));
-			InitHeroWeapon(FName(*Path), CurWeapon->WeaponSocket);
+			for (int i = 0;i < CurHeroRow->WeaponIds.Num();i++) {
+				FWeaponTableRow* CurWeapon = WeaponDataTable->FindRow<FWeaponTableRow>(CurHeroRow->WeaponIds[i], ContextString);
+				FString Path = CurWeapon->WeaponPath.ToString();
+				Path.Replace(TEXT("Blueprint"), TEXT("Class"));
+				static int idx = 0;
+				Path.FindLastChar('\'', idx);
+				Path.InsertAt(idx, TEXT("_C"));
+				InitHeroWeapon(FName(*Path), CurWeapon->WeaponSocket);
+			}
 		}
 		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString()));
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
