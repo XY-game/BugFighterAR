@@ -58,7 +58,7 @@ void ABaseGameLogicActor::InitHero(FVector Location)
 {
 }
 
-void ABaseGameLogicActor::InitHeroWeapon()
+void ABaseGameLogicActor::InitHeroWeapon(FName Path, FName WeaponSocket)
 {
 }
 

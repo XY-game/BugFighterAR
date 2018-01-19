@@ -15,9 +15,12 @@ struct ROBOTBURST_API FWeaponTableRow : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 	
-		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
+		UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
 		FName WeaponName;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Hero)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 		FName WeaponPath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
+		FName WeaponSocket;
 };

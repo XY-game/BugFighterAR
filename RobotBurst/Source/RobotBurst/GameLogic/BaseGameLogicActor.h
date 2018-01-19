@@ -115,7 +115,7 @@ public:
 	virtual void InitHero(FVector Location);
 
 	UFUNCTION()
-	virtual void InitHeroWeapon();
+	virtual void InitHeroWeapon(FName Path, FName WeaponSocket);
 
 	UFUNCTION()
 	virtual void InitPlayerUI();

@@ -13,6 +13,7 @@
 #include "Data/FCharAttackComboRowBase.h"
 #include "GameLogic/Action/ACTPlayerActionActor.h"
 #include "GameTypes.h"
+#include "Weapon/BaseWeapon.h"
 
 ASingleGameLogicActor::ASingleGameLogicActor() {
 	ConstructorHelpers::FObjectFinder<UDataTable> HeroDataTable_BP(TEXT("DataTable'/Game/Project/Blueprints/Data/HeroData.HeroData'"));
@@ -187,14 +188,37 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		if (!CurHeroRow->CharacterRollAnimMontagePath.ToString().Equals("")) {
 			CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString()));
 		}
+
+		if (CurHeroRow->IsHeroHasWeapon) {
+			FWeaponTableRow* CurWeapon = WeaponDataTable->FindRow<FWeaponTableRow>(CurHeroRow->WeaponId, ContextString);
+			FString Path = CurWeapon->WeaponPath.ToString();
+			Path.Replace(TEXT("Blueprint"), TEXT("Class"));
+			static int idx = 0;
+			Path.FindLastChar('\'', idx);
+			Path.InsertAt(idx, TEXT("_C"));
+			InitHeroWeapon(FName(*Path), CurWeapon->WeaponSocket);
+		}
 		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString()));
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
 	}
 	
 }
 
-void ASingleGameLogicActor::InitHeroWeapon()
+void ASingleGameLogicActor::InitHeroWeapon(FName Path, FName WeaponSocket)
 {
+	Super::InitHeroWeapon(Path, WeaponSocket);
+	FVector L(0.f);
+	FRotator R(0.f);
+	TSubclassOf<ABaseWeapon> HeroWeapon = (UClass*)AssetManager->LoadBPForCAssetMap(Path.ToString());
+	ABaseWeapon* CurHeroWeapon = GetWorld()->SpawnActor<ABaseWeapon>(HeroWeapon, L, R);
+
+	if (CurHeroWeapon) {
+		CurHeroWeapon->AttachToComponent(CurPlayerHero->GetMesh(),
+			FAttachmentTransformRules::KeepRelativeTransform, WeaponSocket);
+		CurHeroWeapon->SetActorRelativeLocation(L);
+		CurHeroWeapon->SetActorRelativeRotation(R);
+		CurHeroWeapon->SetActorRelativeScale3D(FVector(1.f));
+	}
 }
 
 void ASingleGameLogicActor::InitPlayerUI()

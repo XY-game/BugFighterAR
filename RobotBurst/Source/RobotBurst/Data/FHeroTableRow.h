@@ -48,8 +48,7 @@ struct ROBOTBURST_API FHeroTableRow : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
 		FName WeaponId;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Hero)
-		FName WeaponSocket;
+
 
 };
 
