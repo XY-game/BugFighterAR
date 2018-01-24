@@ -58,7 +58,7 @@ void ABaseGameLogicActor::InitHero(FVector Location)
 {
 }
 
-void ABaseGameLogicActor::InitHeroWeapon(FName Path, FName WeaponSocket)
+void ABaseGameLogicActor::InitHeroWeapon(FName WeaponId, FName Path, FWeaponTableRow WeaponRow)
 {
 }
 
@@ -74,5 +74,15 @@ void ABaseGameLogicActor::TapPressed(FHitResult Result)
 
 void ABaseGameLogicActor::InitPlayerAction()
 {
+}
+
+UParticleSystemComponent * ABaseGameLogicActor::CreatParticle(FName ParticlePath, FVector SpawnLocation, FRotator SpawnRotation, bool bAutoDestroy)
+{
+	return nullptr;
+}
+
+UParticleSystemComponent * ABaseGameLogicActor::CreatParticleByAttach(FName ParticlePath, USceneComponent * AttachToComponent, FName AttachPointName, FVector Location, FRotator Rotation, EAttachLocation::Type LocationType, bool bAutoDestroy)
+{
+	return nullptr;
 }
 

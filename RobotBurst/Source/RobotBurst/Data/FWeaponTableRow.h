@@ -23,4 +23,10 @@ struct ROBOTBURST_API FWeaponTableRow : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
 		FName WeaponSocket;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
+		bool IsHasHitParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Weapon)
+		FName HitParticlePath;
 };

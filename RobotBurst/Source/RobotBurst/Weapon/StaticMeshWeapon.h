@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		USceneComponent* Root;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = WeaponMesh)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = WeaponMesh)
 	UStaticMeshComponent* Mesh;
 
 	UFUNCTION()

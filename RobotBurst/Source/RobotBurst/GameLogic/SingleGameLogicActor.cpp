@@ -8,12 +8,13 @@
 #include "StateMachine/SingleGame/SingleGameWaitingState.h"
 #include "StateMachine/SingleGame/SingleGamePlayingState.h"
 #include "Data/FHeroTableRow.h"
-#include "Data/FWeaponTableRow.h"
+//#include "Data/FWeaponTableRow.h"
 #include "Data/FCharAttackAnimTableRow.h"
 #include "Data/FCharAttackComboRowBase.h"
 #include "GameLogic/Action/ACTPlayerActionActor.h"
 #include "GameTypes.h"
 #include "Weapon/BaseWeapon.h"
+#include "Data/FWeaponTableRow.h"
 
 ASingleGameLogicActor::ASingleGameLogicActor() {
 	ConstructorHelpers::FObjectFinder<UDataTable> HeroDataTable_BP(TEXT("DataTable'/Game/Project/Blueprints/Data/HeroData.HeroData'"));
@@ -82,7 +83,7 @@ AHeroCharacter * ASingleGameLogicActor::CreatPlayerHero(FString HeroResPath, FVe
 {
 	Super::CreatPlayerHero(HeroResPath, Location, Rotator);
 	FVector L(0.f);
-	PlayerHero = (UClass*)AssetManager->LoadBPForCAssetMap(HeroResPath);
+	PlayerHero = (UClass*)AssetManager->LoadBPForCAssetMap(HeroResPath,false);
 	AHeroCharacter* HeroChar = GetWorld()->SpawnActor<AHeroCharacter>(PlayerHero, Location, Rotator);
 
 	if (HeroChar) {
@@ -143,7 +144,7 @@ void ASingleGameLogicActor::StartGame()
 			InitPlayerAction();
 		}
 	}
-		StateMachine->ChangeState((int)EGameplayState::Playing);
+	StateMachine->ChangeState((int)EGameplayState::Playing);
 }
 
 void ASingleGameLogicActor::InitHero(FVector Location)
@@ -167,6 +168,7 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 
 		CurPlayerHero->NormalHeight = CurHeroRow->NormalHeight;
 		CurPlayerHero->RollHeight = CurHeroRow->RollHeight;
+		CurPlayerHero->CurTeam = ECharaterTeam::Team_1;
 
 		//animations
 		FCharAttackAnimTableRow* CurAttackAnim = CharAnimDataTable->FindRow<FCharAttackAnimTableRow>(CurHeroRow->AttackAnimRowName, ContextString);
@@ -176,7 +178,7 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 				InfoAdpter.AnimStartSpacing = It.Value().AnimStartSpacing;
 				InfoAdpter.AnimEndSpacing = It.Value().AnimEndSpacing;
 				InfoAdpter.AnimDamageTime = It.Value().AnimDamageTime;
-				InfoAdpter.CharacterAttackAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(It.Value().CharacterAttackAnimMontagePath.ToString()));
+				InfoAdpter.CharacterAttackAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(It.Value().CharacterAttackAnimMontagePath.ToString(), false));
 				CurPlayerHero->CharacterAttackAnimInfo.Add(It.Key(), InfoAdpter);
 			}
 		}
@@ -186,7 +188,7 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 		CurPlayerHero->CharacterAttackComboList = CurCombAnim->CharacterAttackComboList;
 
 		if (!CurHeroRow->CharacterRollAnimMontagePath.ToString().Equals("")) {
-			CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString()));
+			CurPlayerHero->CharacterRollAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterRollAnimMontagePath.ToString(), false));
 		}
 
 		if (CurHeroRow->IsHeroHasWeapon) {
@@ -197,29 +199,35 @@ void ASingleGameLogicActor::InitHero(FVector Location)
 				static int idx = 0;
 				Path.FindLastChar('\'', idx);
 				Path.InsertAt(idx, TEXT("_C"));
-				InitHeroWeapon(FName(*Path), CurWeapon->WeaponSocket);
+				InitHeroWeapon(CurHeroRow->WeaponIds[i], FName(*Path), *CurWeapon);
+				if (CurWeapon->IsHasHitParticle) {
+					AssetManager->LoadBPAssetMap(CurWeapon->HitParticlePath.ToString(),true);
+				}
 			}
 		}
-		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString()));
+		CurPlayerHero->CharacterDieAnimMontage = Cast<UAnimMontage>(AssetManager->LoadBPAssetMap(CurHeroRow->CharacterDieAnimMontagePath.ToString(),false));
 		GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::Red, TEXT("Creat Hero"));
 	}
 	
 }
 
-void ASingleGameLogicActor::InitHeroWeapon(FName Path, FName WeaponSocket)
+void ASingleGameLogicActor::InitHeroWeapon(FName WeaponId, FName Path, FWeaponTableRow WeaponRow)
 {
-	Super::InitHeroWeapon(Path, WeaponSocket);
+	Super::InitHeroWeapon(WeaponId, Path, WeaponRow);
 	FVector L(0.f);
 	FRotator R(0.f);
-	TSubclassOf<ABaseWeapon> HeroWeapon = (UClass*)AssetManager->LoadBPForCAssetMap(Path.ToString());
+	TSubclassOf<ABaseWeapon> HeroWeapon = (UClass*)AssetManager->LoadBPForCAssetMap(Path.ToString(),false);
 	ABaseWeapon* CurHeroWeapon = GetWorld()->SpawnActor<ABaseWeapon>(HeroWeapon, L, R);
 
 	if (CurHeroWeapon) {
 		CurHeroWeapon->AttachToComponent(CurPlayerHero->GetMesh(),
-			FAttachmentTransformRules::KeepRelativeTransform, WeaponSocket);
+			FAttachmentTransformRules::KeepRelativeTransform, WeaponRow.WeaponSocket);
 		CurHeroWeapon->SetActorRelativeLocation(L);
 		CurHeroWeapon->SetActorRelativeRotation(R);
 		CurHeroWeapon->SetActorRelativeScale3D(FVector(1.f));
+		CurHeroWeapon->CurTeam = CurPlayerHero->CurTeam;
+		CurHeroWeapon->HitParticlePath = WeaponRow.HitParticlePath;
+		CurPlayerHero->CharacterWeapons.Add(WeaponId, CurHeroWeapon);
 	}
 }
 
@@ -231,7 +239,7 @@ void ASingleGameLogicActor::InitPlayerUI()
 	switch (CurHeroType)
 	{
 	case EHeroType::ACT:
-		ActionUI = (UClass*)AssetManager->LoadBPForCAssetMap("Class'/Game/Project/Blueprints/UI/MyACTGameInputWidget.MyACTGameInputWidget_C'");
+		ActionUI = (UClass*)AssetManager->LoadBPForCAssetMap("Class'/Game/Project/Blueprints/UI/MyACTGameInputWidget.MyACTGameInputWidget_C'",false);
 		if (ActionUI) {
 			PlayerUI = CreateWidget<UGameInputWidget>(GetWorld(), ActionUI);
 			PlayerUI->GameLogic = this;
@@ -265,6 +273,25 @@ void ASingleGameLogicActor::InitPlayerAction(){
 	default:
 		break;
 	}
+}
+
+UParticleSystemComponent * ASingleGameLogicActor::CreatParticle(FName ParticlePath, FVector SpawnLocation, FRotator SpawnRotation, bool bAutoDestroy)
+{
+	Super::CreatParticle(ParticlePath, SpawnLocation, SpawnRotation, bAutoDestroy);
+	UParticleSystem* temp = Cast<UParticleSystem>(AssetManager->LoadBPAssetMap(ParticlePath.ToString(), false));
+	UParticleSystemComponent* Particle = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), 
+		temp, SpawnLocation, SpawnRotation, bAutoDestroy);
+	GEngine->AddOnScreenDebugMessage(41, 1.f, FColor::Red, SpawnLocation.ToString());
+	return Particle;
+}
+
+UParticleSystemComponent * ASingleGameLogicActor::CreatParticleByAttach(FName ParticlePath, USceneComponent * AttachToComponent, FName AttachPointName, FVector Location, FRotator Rotation, EAttachLocation::Type LocationType, bool bAutoDestroy)
+{
+	Super::CreatParticleByAttach(ParticlePath, AttachToComponent, AttachPointName, Location, Rotation, LocationType, bAutoDestroy);
+
+	UParticleSystem* temp = Cast<UParticleSystem>(AssetManager->LoadBPAssetMap(ParticlePath.ToString(), false));
+	UParticleSystemComponent* Particle = UGameplayStatics::SpawnEmitterAttached(temp, AttachToComponent, AttachPointName, Location, Rotation, LocationType, bAutoDestroy);
+	return Particle;
 }
 
 void ASingleGameLogicActor::TapPressed(FHitResult Result)

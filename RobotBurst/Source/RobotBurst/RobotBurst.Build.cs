@@ -2,13 +2,14 @@
 
 using UnrealBuildTool;
 
+
 public class RobotBurst : ModuleRules
 {
 	public RobotBurst(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule" , "Slate", "SlateCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule", "Slate", "SlateCore", "GameplayTasks" });
 
         PrivateDependencyModuleNames.AddRange(new string[] {  "GoogleARCoreBase",
             "ProceduralMeshComponent",

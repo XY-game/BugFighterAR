@@ -6,6 +6,16 @@
 #include "UObject/NoExportTypes.h"
 #include "GameTypes.generated.h"
 
+UENUM()
+//µã»÷×´Ì¬
+namespace ECharaterTeam
+{
+	enum Type
+	{
+		Team_1,
+		Team_2,
+	};
+}
 
 UENUM()
 //µã»÷×´Ì¬

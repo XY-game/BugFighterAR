@@ -57,13 +57,21 @@ public:
 	void InitHero(FVector Location) override;
 
 	UFUNCTION()
-	virtual void InitHeroWeapon(FName Path, FName WeaponSocket) override;
+	virtual void InitHeroWeapon(FName WeaponId, FName Path, FWeaponTableRow WeaponRow) override;
 
 	UFUNCTION()
 	void InitPlayerUI() override;
 
 	UFUNCTION()
 	void InitPlayerAction() override;
+
+	UFUNCTION()
+	UParticleSystemComponent* CreatParticle(FName ParticlePath, FVector SpawnLocation,
+		FRotator SpawnRotation, bool bAutoDestroy) override;
+
+	UParticleSystemComponent* CreatParticleByAttach(FName ParticlePath, USceneComponent* AttachToComponent,
+		FName AttachPointName, FVector Location, FRotator Rotation, 
+		EAttachLocation::Type LocationType, bool bAutoDestroy) override;
 
 	UFUNCTION()
 	void TapPressed(FHitResult Result) override;

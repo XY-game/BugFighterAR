@@ -7,6 +7,7 @@
 #include "Data/FCharAttackAnimTableRow.h"
 #include "StateMachine/FSMMachine.h"
 #include "GameTypes.h"
+#include "Weapon/BaseWeapon.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -23,11 +24,17 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
-	float NormalSpeed = 20;
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
-	float AttackSpeed = 20;
+		float NormalSpeed = 20;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
+		float AttackSpeed = 20;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
 		float NormalHeight;
@@ -35,12 +42,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
 		float RollHeight;
 
-
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CharData)
+		TEnumAsByte<ECharaterTeam::Type> CurTeam;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = State)
 	TEnumAsByte<ECharaterBeDamageType::Type> BeDamageType;
@@ -63,4 +66,8 @@ public:
 
 	//½ÇÉ«ÐÐ¶¯×´Ì¬×´Ì¬»ú
 	FSMMachine* ActionStateMachine;
+
+	//½ÇÉ«ÎäÆ÷
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharData)
+	TMap<FName, ABaseWeapon*> CharacterWeapons;
 };

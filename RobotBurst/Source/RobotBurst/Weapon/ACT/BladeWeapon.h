@@ -13,7 +13,9 @@ UCLASS()
 class ROBOTBURST_API ABladeWeapon : public AStaticMeshWeapon
 {
 	GENERATED_BODY()
-	
+
+	ABladeWeapon();
+
 	UFUNCTION()
 	void OnWeaponOverlap(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
 		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,

@@ -8,6 +8,7 @@ AStaticMeshWeapon::AStaticMeshWeapon() {
 	RootComponent = Root;
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	Mesh->SetNotifyRigidBodyCollision(true);
 	Mesh->SetCollisionProfileName(TEXT("OverlapAll"));
 	Mesh->OnComponentBeginOverlap.AddDynamic(this, &AStaticMeshWeapon::OnWeaponOverlap);
 }

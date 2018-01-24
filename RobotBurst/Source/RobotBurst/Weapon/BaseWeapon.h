@@ -3,11 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Engine.h"
+#include "GameFramework/Pawn.h"
+#include "GameTypes.h"
 #include "BaseWeapon.generated.h"
 
 UCLASS()
-class ROBOTBURST_API ABaseWeapon : public AActor
+class ROBOTBURST_API ABaseWeapon : public APawn
 {
 	GENERATED_BODY()
 	
@@ -23,8 +25,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = WeaponMesh)
-	//UStaticMeshComponent* Mesh;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = WeaponData)
+		TEnumAsByte<ECharaterTeam::Type> CurTeam;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = WeaponData)
+		FName HitParticlePath;
 
 	UFUNCTION()
 	virtual void OnWeaponOverlap(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor, 

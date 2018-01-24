@@ -25,7 +25,7 @@ void AGameAssetManagerActor::Tick(float DeltaTime)
 
 }
 
-UObject * AGameAssetManagerActor::LoadBPForCAssetMap(FString AssetPath)
+UObject * AGameAssetManagerActor::LoadBPForCAssetMap(FString AssetPath, bool IsPreLoad)
 {
 	if (BPForCAssetMap.Contains(*AssetPath)) {
 		return BPForCAssetMap[*AssetPath];
@@ -54,7 +54,7 @@ void AGameAssetManagerActor::EmptyBPForCAssetMap()
 	BPForCAssetMap.Empty();
 }
 
-UObject * AGameAssetManagerActor::LoadBPAssetMap(FString AssetPath)
+UObject * AGameAssetManagerActor::LoadBPAssetMap(FString AssetPath, bool IsPreLoad)
 {
 	
 		if (BPAssetMap.Contains(*AssetPath)) {

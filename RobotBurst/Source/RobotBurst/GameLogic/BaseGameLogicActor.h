@@ -18,6 +18,7 @@
 #include "Runtime/Engine/Classes/Engine/DataTable.h"
 #include "GameLogic/Action/BasePlayerActionActor.h"
 #include "PlayerPawn.h"
+#include "Data/FWeaponTableRow.h"
 #include "BaseGameLogicActor.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FArScanedEvent, bool, IsScaned);
@@ -115,13 +116,19 @@ public:
 	virtual void InitHero(FVector Location);
 
 	UFUNCTION()
-	virtual void InitHeroWeapon(FName Path, FName WeaponSocket);
+	virtual void InitHeroWeapon(FName WeaponId, FName Path, FWeaponTableRow WeaponRow);
 
 	UFUNCTION()
 	virtual void InitPlayerUI();
 
 	UFUNCTION()
 	virtual void InitPlayerAction();
+
+	UFUNCTION()
+	virtual UParticleSystemComponent* CreatParticle(FName ParticlePath, FVector SpawnLocation, FRotator SpawnRotation, bool bAutoDestroy);
+
+	UFUNCTION()
+	virtual UParticleSystemComponent* CreatParticleByAttach(FName ParticlePath, USceneComponent* AttachToComponent, FName AttachPointName, FVector Location, FRotator Rotation, EAttachLocation::Type LocationType, bool bAutoDestroy);
 
 	UPROPERTY(BlueprintAssignable)
 	FArScanedEvent ArScanedEvent;

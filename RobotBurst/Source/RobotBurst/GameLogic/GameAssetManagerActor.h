@@ -31,7 +31,7 @@ public:
 		TMap<FString, UObject*> BPAssetMap;
 
 	UFUNCTION()
-		UObject* LoadBPForCAssetMap(FString AssetPath);
+		UObject* LoadBPForCAssetMap(FString AssetPath, bool IsPreLoad);
 
 	UFUNCTION()
 		void RemoveBPForCAssetMap(FString AssetPath);
@@ -40,7 +40,7 @@ public:
 	void EmptyBPForCAssetMap();
 
 	UFUNCTION()
-		UObject* LoadBPAssetMap(FString AssetPath);
+		UObject* LoadBPAssetMap(FString AssetPath, bool IsPreLoad);
 
 	UFUNCTION()
 		void RemoveBPAssetMap(FString AssetPath);
