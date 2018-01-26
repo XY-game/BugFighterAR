@@ -5,15 +5,23 @@
 #include "BaseGameState.h"
 
 ABladeWeapon::ABladeWeapon() {
-	//Mesh->OnComponentBeginOverlap.AddDynamic(this, &AStaticMeshWeapon::OnWeaponOverlap);
+	Mesh->OnComponentBeginOverlap.AddDynamic(this, &ABladeWeapon::OnWeaponOverlapBegin);
 }
 
-void ABladeWeapon::OnWeaponOverlap(UPrimitiveComponent * OverLapComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void ABladeWeapon::OnWeaponOverlapBegin(UPrimitiveComponent * OverLapComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	ABaseCharacter* Character = Cast<ABaseCharacter>(OtherActor);
 	if (Character && Character->CurTeam != CurTeam) {
 		GEngine->AddOnScreenDebugMessage(40, 1.f, FColor::Red, TEXT("Weapon Hit"));
-		ABaseGameState* const BaseGameState = GetWorld()->GetGameState<ABaseGameState>();
-		BaseGameState->GameLogic->CreatParticle(HitParticlePath, SweepResult.Location, GetActorRotation(),true);
+		CreatHitParticle();
+		//ABaseGameState* const BaseGameState = GetWorld()->GetGameState<ABaseGameState>();
+		//BaseGameState->GameLogic->CreatParticle(HitParticlePath, SweepResult.Location, GetActorRotation(),true);
 	}
 }
+
+void ABladeWeapon::OnWeaponOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
+
+}
+
+

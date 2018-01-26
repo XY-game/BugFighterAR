@@ -24,9 +24,12 @@ public:
 	UStaticMeshComponent* Mesh;
 
 	UFUNCTION()
-	void OnWeaponOverlap(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
+	void OnWeaponOverlapBegin(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
 		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 		const FHitResult & SweepResult) override;
+
+	void OnWeaponOverlapEnd(class UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
 	
-	
+	void CreatHitParticle();
 };

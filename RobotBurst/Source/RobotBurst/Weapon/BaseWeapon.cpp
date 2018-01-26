@@ -24,8 +24,12 @@ void ABaseWeapon::Tick(float DeltaTime)
 
 }
 
-void ABaseWeapon::OnWeaponOverlap(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
+void ABaseWeapon::OnWeaponOverlapBegin(class UPrimitiveComponent* OverLapComp, class AActor* OtherActor,
 	class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 	const FHitResult & SweepResult) {
 
+}
+
+void ABaseWeapon::OnWeaponOverlapEnd(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
+{
 }
